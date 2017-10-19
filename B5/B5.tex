@@ -1,0 +1,94 @@
+% This is the ADASS_template.tex LaTeX file, 26th August 2016.
+% It is based on the ASP general author template file, but modified to reflect the specific
+% requirements of the ADASS proceedings.
+% Copyright 2014, Astronomical Society of the Pacific Conference Series
+% Revision:  14 August 2014
+
+% To compile, at the command line positioned at this folder, type:
+% latex ADASS_template
+% latex ADASS_template
+% dvipdfm ADASS_template
+% This will create a file called aspauthor.pdf.}
+
+\documentclass[11pt,twoside]{article}
+
+% Do NOT use ANY packages other than asp2014.
+\usepackage{asp2014}
+
+\aspSuppressVolSlug
+\resetcounters
+
+% References must all use BibTeX entries in a .bibfile.
+% References must be cited in the text using \citet{} or \citep{}.
+% Do not use \cite{}.
+% See ManuscriptInstructions.pdf for more details
+\bibliographystyle{asp2014}
+
+% The ``markboth'' line sets up the running heads for the paper.
+% 1 author: "Surname"
+% 2 authors: "Surname1 and Surname2"
+% 3 authors: "Surname1, Surname2, and Surname3"
+% >3 authors: "Surname1 et al."
+% Replace ``Short Title'' with the actual paper title, shortened if necessary.
+% Use mixed case type for the shortened title
+% Ensure shortened title does not cause an overfull hbox LaTeX error
+% See ASPmanual2010.pdf 2.1.4  and ManuscriptInstructions.pdf for more details
+\markboth{O'Mullane et al.}{BoF:Science Platforms}
+
+\begin{document}
+
+\title{Birds of a Feather session on Science platforms}
+
+% Note the position of the comma between the author name and the
+% affiliation number.
+% Author names should be separated by commas.
+% The final author should be preceded by "and".
+% Affiliations should not be repeated across multiple \affil commands. If several
+% authors share an affiliation this should be in a single \affil which can then
+% be referenced for several author names.
+% See ManuscriptInstructions.pdf and ASPmanual2010.pdf 3.1.4 for more details
+\author{William~O'Mullane$^1$,
+Michael~Wise$^3$,
+Gregory~Dubois-Felsmann$^2$,
+$^3$,
+$^4$,
+\affil{$^1$Large Synoptic Survey Telescope, Tucson, AZ, USA; \email{womullan@lsst.org}}
+\affil{$^2$IPAC, California Institute of Technology, Pasadena, CA, U.S.A.}
+\affil{$^3$ASTRON}
+\affil{$^4$}
+}
+
+% This section is for ADS Processing.  There must be one line per author.
+\paperauthor{William~O'Mullane}{womullan@lsst.org}{}{LSST}{}{Tucson}{AZ}{85719}{USA}
+\paperauthor{Gregory~Dubois-Felsmann}{gpdf@ipac.caltech.edu}{}{California Institute of Technology}{IPAC}{Pasadena}{California}{91125}{USA}
+
+\begin{abstract}
+How users will interact with data in the future is always unclear.  Currently we see Jupyter Notebooks or JupyterLab emerging in many places as the way forward for one aspect of this.  In LSST we identify two other aspects common to many data providers: the portal aspect and the API/Data Services Aspect.
+
+\end{abstract}
+
+\section{Introduction}
+
+It seems timely to consider how we might offer users a smoother experience as they move between data providers.
+Current VO services allow one to send queries to multiple centres but in the notebook environment one may wish to do something more sophisticated. We should consider whether users can send requests from one centre to another or whether the same notebooks should be runnable in different centres.
+How do we deal with batch processing - large jobs? How do we manage resources/quotas (disk/memory/cpu)?  How can we enable users to share their work (both notebooks and data) and create ad-hoc scientific collaborations?
+We would have a few short presentations on these topics and discuss the future and perhaps give direction to IVOA in this emerging area.
+
+Draft Agenda\\
+\begin{itemize}
+\item Intro set scene (William O'Mullane/Michael Wise)
+\item Strict 5 minute position talks:(30 minutes)
+\item LSST Approach (Gregory Dubois-Felsmann or O’Mullane)
+\item SciServer Approach (Lemson or Won Kim or Popp)
+\item European Space Science Data Centre (Merin)
+\item NOAO approach (...)
+\item Others ..
+\item Discussion on areas to work together on and potential input to IVOA (20-30min).
+\end{itemize}
+
+%\articlefigure{filename}{labelname}{caption}
+
+
+\bibliography{B5}  % For BibTex
+
+\end{document}
