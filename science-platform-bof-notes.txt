@@ -1,0 +1,237 @@
+Science Platform BOF - ADASS 27 - Tuesday, Oct 24, 2017
+
+
+LSST in-house term: think about things at a level above individual tools and think of the environment of the users
+
+LSST (python with c++)
+---
+science platform
+	-give access to the data
+	- viz tools
+	-sensative docs
+	-collaboration
+	-interface for added value processing close to the data
+
+customers
+	- project staff (for validation and testing)
+	-scienctists
+	-opo activities
+
+2 interactive ways of exploring the data
+	- portal (discovery, structured work flow between datasets, querries)
+	- notebook environment (ipython, contemporary hub technologies)
+	- public API/VO and REST
+
+"aspects" of the science platform, where you see the data from different views, but it's always available
+
+
+interaction between the platform and structure will be what?
+	- q: what are you talking to, a library? An api?
+	- A: all talking throught the API, maybe shortcircuit the APIs in the notebook
+	     confusion on what the question is
+	- cost of building a system where the language interface, and indistinct  not well specified API protocols
+	  if you want to do arbitrary computations on the data you need arbitrary apis that can compile foreign code
+	  what if user needs to write code in something not in c++ or python
+	- A: yes, users can write c++ to interface with the environment
+
+
+Gerard Lemson:
+-------------
+SciServer
+
+- format agnostic storage with extensible tools
+- host and share datasets
+- query and analysis tools
+- collaborative research workspaces
+- distributed deployment
+- analysis with jupyter notebooks hosted in docker containers
+- api access/ SSO
+- managed hardware infrastructure in IDIES
+- across science domains (sucha as CS, astronomy, life sciences, social sciences..)
+- CAS + DAS 
+- dark mater halos in simulation database available for query and analysis
+- shared databases that can be added by users
+ 
+Q: batch jobs
+A: 48 containers in largest batch jobs, no MPI paralellization
+Q: vision for provisioning resources (disk space, cpu time... scaling into the future)
+A: groups provide their own hardware, example: JHU, you can create groups and decide who has access tot he data and how much is provisioned. Right now they are in the process of building trial functionality, they aren't checking what the actual goal of the computations are, but they dont want to be a generic compute center
+
+Christophe Arviset
+------------------
+Science Exploitation and Preservation Platform at ESAC
+
+motivation: increase of data volume
+drivers: 
+	- bring the code to the big data, enable data processing where the data is interactive for analysis (jupyter)
+	- bring the code to the small data, enable easier acess to the standard data processing, OTF creation of VM, used for standard buld mission data processing
+
+	- provide the software and science data processing capabilities as a service.
+	- collaborative platform for data (disk space, metadata, publishing with VO protocols)
+	- collaborative platform for software (pipeline development environment and testing, share you code on the science app store)
+
+status: 
+	- gaia archive
+	- DAS-LT
+	- PLAAVI
+	- GAVIP
+
+design and implement first prototype in 2018
+
+IVOA and remote computing
+-------------------------
+Mike Fitzpatrick - NOAO datalab
+
+decaim/mosaic image data at noao example of data in archive
+from all the deccam exposures doing aperture  photometry for an allsky catalog
+
+design principles:
+	- multiple entry points into the system (web, notebooks, cmdline tools, scripting apis)
+	- language agnostic (python flask micro-services architecture, restful interface)
+	- enable user developed tools
+	- established standards with hidden complexity for friendly interfaces
+	- provide access to external data/services vs local ingest
+
+
+- large catalogs (25TB in first release)
+- pixel data
+- virtual storage (1TB per user to minimize data transfer)
+- visualization for data exploration
+- compute processing - workflows to run close to the data
+
+Q: virtual storage, is that user storage how many users do you expect?
+A: (1PB set aside for internal ops and users), not enforcing storage yet
+Q: preservation of software?
+A: not just another python api, also want to take care of legacy code
+Q: what level of user support do you imagine for the systems?
+A: introductory notebooks, QA on webpage, anonymous allowed
+Q: how to access data for anonymous users, what are the limits
+A: all the data are public, authentication for  proprietary data not yet hooked up
+need an account to save data and work long term. Need verification of existence so that bots don't sign up.
+There may be a shared system implemented later. LSST also requiring authenticated users for persistent data.
+
+
+Iva Momcheva
+------------
+DSMO STScI
+
+explanation that the DSMO office helps with shared priorities across all STScI missions
+- increase science output from holdings
+- increase turn around time for science
+- connect multi-wavelength data
+- provide tools for reproducible research, integrate workflows
+- look forward to future missions
+- twice as many publications from archival research as the original investigating team for datasets
+- how to restructure the DMS in era of WFIRST 
+- MAST Portal data discovery tools for local analysis
+- MAST API/Astroquery module
+- Astroconda, anaconda channel to install software suite
+- Data analysis tools, all based on opensource software, heavy contribution to astropy libraries
+- Hosted services: ExoCTK
+- science platforms
+	- 120TB to 140TB of data
+	- AMIs with tools and notebooks
+	- Jupyter Hub project
+		-AMIs to docker containers
+		-user authentication
+		-kubernettes container orchestration
+		- planning to explore cloud providers, currently looking at AWS
+Q: cost of AWS for these services?
+A: AWS has a public dataset program, $5/month in the S3 bucket, they are providing the service in kind, with the idea that we would run computations against it. Use internally to see how we can reprocess data ourselves. Not all the computations will be provided to the users for free. 
+Q: LSST EPO plans to go with AWS as well
+
+Sebastian CADC
+--------------
+CANFAR Multi cloud processing
+
+- 2 openstack clouds
+- 38 astro projects
+- 18 M batch jobs on 74k VMs
+- 200 TB user storage split into 220 project spaces, people can share data and create groups, linked to the archive with thes same authorization and notification system. 
+
+User interaction
+	- raw openstack portal with vanilla VMs
+	- web +cli for user storage and data sharing
+	- 4 projects using jupyter notebooks
+
+Limitations:
+	- data movement
+	- multi-data acess, many user responsibilites
+	- maintainence on multi-tenancy software stack diversity
+	- needs more integration; AAI, storage acess, automated deployments
+
+- submitted large CFI proposal to switch everything to containers, with the jupyter front end, user DB and integrated tiered storage
+
+Q: doing anything for object storing?
+A: SEPP is used for block storage, not used for objects or filesystem. 
+Q: You mentioned 4 known projects using Jupyter, how are they launched?
+A: basically a jupyter hub and two VPNS with a shared filesystem, some other project a few years back used the CADS authentication system to authorize user access to the their own data storage
+
+
+Brian (CADC)
+------------
+IVOA and remote computing
+
+- grid and web services working group, working with knowledge discovery group to define use cases
+- goal: fast computing interoperable computing services close to the data
+- ML remote execution prototyping
+	- train and run an algorithm on a full set of data
+	- make use of existing VO protocols
+	- perform certain steps manually if necessary, worry about optimizations later
+	- document the interactions between the scientsts and the infrastructure provider
+- must allow data centers to optimize the approach to executing batch processes
+- combination of APU and code may assist with provencence and reproducibiltiy
+- encourage experiments and prototypes
+- send feedback to the IVOA
+
+Q: can you foresee that containers could play a role in the standards, set up a docker container that has access to the data that is sent to the center?
+A: needs to be something that abstracts the code, whether or not we want to be bound to containers is undecided
+Q: what's the security consideration for sending containters to the data center?
+A: that's definitely a consideration
+Q: difficult to provide a powerfull enough interface to allow upload of code, is that what you're doing?
+A: Yes, you can run arbitrary code on the data center machines. Need a level of abstraction there so that we can upload your code in a way that we can run. Need standard ways to save the results, maybe information on inputs. 
+
+Show of hands, who is doing a project like the above with jupyter lab/hub
+ - about 50/50 response of those using/ not using jupyter
+
+Q: sharing computing infrastructure with the community - everyone is saying they want to use jupyter notebooks, what about the security of the notebooks implementation to avoid unauthorized access.
+A: sciserver is anonymous in that everyone can register
+A: datalab is actually checking on people who apply for accounts, the APIs authenticate to our services, you can still run an anonymous notebook, but the advantage of having an anonymous server is for tutorials and EPO projects, when you sign up for an account there will be some sort of validation (i.e. not just signing in with your facebook account). Containers will be running the universal worker service, it spaws the jobs. 
+
+Comment: NCSA research scientist, there's an effort going on there that jives, WHOLTALE is a docker stack that allows you to deploy on your own hardware. Development effort that is still ongoing, join the development list for more interaction. Using docker swarm as the background, used as a platform for data sharing and computing on top of that on hardware the user controls. This is a central software project that could provide the core functionality
+
+Comment: think about a change in paradigm, providing data is different than providing compute. Write a proposal for type of compute with i/o and sources, a committee  decides what you get. Goal to not waste compute.  
+	- LSST is thinking about these things for the future
+	- CADC, let's first get users, the community is not enormous, they have rough estimates of their needs and are not furtive, so far these worries haven't been a problem. 
+	- comment: important to open doors to reprocess images, going to cloud services gives a new user space to provide resources through other methods. Can the containerization run on multiple infrastructures, with great portability?
+	A: that seems to be where these things are heading
+
+
+comment: how to combine and connect all the resources in the future (the dream of the ivoa)
+
+Q: how can we communicate between the large centers better?
+A: that was the point of this bof
+Q: maybe we should look at the channels others outside of the astronomy community have used?
+
+Comment: national data services consortium, all sciences, had discussions there about containerization for mutually beneficial interactions, NDS has one or two meetings a year: http://nationaldataservice.org
+
+Q: Security was spoken about, but not much with authentication. Many use github authentication...concern is that forcing people to use any one authentication is not a good idea.
+A: agreed, will probably provide multiple authentication services, hopefully will get to an automatic way of authentifciation via API for science user validation. Data rights can be complicated. 
+
+Q: reusing and bringing old code to the new platforms, other large datacenters, what are they doing?
+A: ESAC and NOAO mentioned that, they are places with legacy processing software that wants specific machines to run on, what's the question? What is everyone else doing?
+- trying to port CASA, complicated with guis
+A: some idea is to preserve the software, ported to VM and offer it as a service for people to use
+Comment: important to educate our users on new and updated software instead of having them continue to run legacy code
+
+Comment: rather than move code to data, provide virtual storage space for use, you just move your data. Okay for small datasets, but helps you not rewrite code just to use the new interace. 
+
+Comment: VNC on browser capabilities are not great, but there have been people using it if really needed
+
+Wrap up:
+continue the conversation in what forum?  mailing list? or are we finished? 
+- make a mailing list
+- github repo, comments on the repo?
+
+http://github.com/lsst-dm/adass27-womullen/
+
