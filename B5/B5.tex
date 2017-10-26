@@ -48,22 +48,32 @@
 % be referenced for several author names.
 % See ManuscriptInstructions.pdf and ASPmanual2010.pdf 3.1.4 for more details
 \author{William~O'Mullane$^1$,
-Michael~Wise$^3$,
-Gregory~Dubois-Felsmann$^2$,
-$^3$,
-$^4$,
+Megan Sosey$^2$,
+Hassan Siddiqui$^4$,
+Gregory~Dubois-Felsmann$^3$,
+Gerard Lemson$^5$,
+Christophe Arviset$^6$,
+Mike Fitzpatrick$^7$,
+Ivelina Momcheva$^2$,
+Sebastien Fabbro$^8$,
+Brian Major$^8$
 \affil{$^1$Large Synoptic Survey Telescope, Tucson, AZ, USA; \email{womullan@lsst.org}}
-\affil{$^2$IPAC, California Institute of Technology, Pasadena, CA, U.S.A.}
-\affil{$^3$ASTRON}
-\affil{$^4$}
+\affil{$^2$Space Telescope Science Institute}
+\affil{$^3$IPAC, California Institute of Technology, Pasadena, CA, U.S.A.}
+\affil{$^4$Vega for Gaia/ESAC}
+\affil{$^5$The Johns Hopkins University}
+\affil{$^6$European Space Astronomy Centre}
+\affil{$^7$NOAO }
+\affil{$^8$CADC }
 }
+%Michael~Wise$^3$,
 
 % This section is for ADS Processing.  There must be one line per author.
 \paperauthor{William~O'Mullane}{womullan@lsst.org}{}{LSST}{}{Tucson}{AZ}{85719}{USA}
 \paperauthor{Gregory~Dubois-Felsmann}{gpdf@ipac.caltech.edu}{}{California Institute of Technology}{IPAC}{Pasadena}{California}{91125}{USA}
 
 \begin{abstract}
-How users will interact with data in the future is always unclear.  Currently we see Jupyter Notebooks or JupyterLab emerging in many places as the way forward for one aspect of this.  In LSST we identify two other aspects common to many data providers: the portal aspect and the API/Data Services Aspect.
+How users will interact with data in the future is always unclear.  Currently we see Jupyter Notebooks or JupyterLab emerging in many places as the way forward for one aspect of this.  This BoF explored some topics around providing and environment for doing science.
 
 \end{abstract}
 
@@ -72,23 +82,45 @@ How users will interact with data in the future is always unclear.  Currently we
 It seems timely to consider how we might offer users a smoother experience as they move between data providers.
 Current VO services allow one to send queries to multiple centres but in the notebook environment one may wish to do something more sophisticated. We should consider whether users can send requests from one centre to another or whether the same notebooks should be runnable in different centres.
 How do we deal with batch processing - large jobs? How do we manage resources/quotas (disk/memory/cpu)?  How can we enable users to share their work (both notebooks and data) and create ad-hoc scientific collaborations?
-We would have a few short presentations on these topics and discuss the future and perhaps give direction to IVOA in this emerging area.
-
-Draft Agenda\\
+We had a few short presentations:
 \begin{itemize}
-\item Intro set scene (William O'Mullane/Michael Wise)
-\item Strict 5 minute position talks:(30 minutes)
-\item LSST Approach (Gregory Dubois-Felsmann or O’Mullane)
-\item SciServer Approach (Lemson or Won Kim or Popp)
-\item European Space Science Data Centre (Merin)
-\item NOAO approach (...)
-\item Others ..
-\item Discussion on areas to work together on and potential input to IVOA (20-30min).
+\item LSST Approach (Dubois-Felsmann): science platform will give access to the data and visualization tools and documentation, it will allow collaboration and allow for added value processing close to the data using Jupyter. A question caused clarification that you could write C++ or any other language in that system.
+
+\item SciServer Approach (Lemson): SciServer is format agnostic storage with extensible tools (query and analysis), it allows hosting and sharing datasets. Near data access is provided with Jupyter. Notebooks can be executed in batch mode but no MPI.
+
+\item European Space Science Data Centre (Arviset):Science Exploitation and Preservation Platform at ESAC
+intends to enable data processing where the data (Jupyter), also for small data and for legacy software.
+
+\item NOAO approach (Fitzpatrick): Datalab provides full sky exploration of catalogs and local dataspace, it allows workflows to run close to the data. Providing Jupyter and legacy code execution.
+
+\item STScI DSMO (Momcheva): increase science output from holdings, shorten turn around time, connect multi wavelength, considering a Jupyter hub system deployed on Amazon.
+
+\item CADC (Fabbro):raw OpenStack portal with vanilla VMs, some projects using Jupyter, intending  to containerize.
+
+\item CADC/IVOA (Major):IVOA and remote computing
+grid and web services working group, working with knowledge discovery group to define use cases.
+Goal is fast interoperable computing services close to the data, support Machine Learning.
 \end{itemize}
 
 %\articlefigure{filename}{labelname}{caption}
 
+Q: vision for provisioning resources (disk space, cpu time... scaling into the future)
+A: groups provide their own hardware, example: JHU, you can create groups and decide who has access tot he data and how much is provisioned. Right now they are in the process of building trial functionality, they aren't checking what the actual goal of the computations are, but they don't want to be a generic compute center
 
+\section{Discussion}
+Current VO services allow one to send queries to multiple centres but in the notebook environment one may wish to do something more sophisticated. We should consider whether users can send requests from one centre to another or whether the same notebooks should be runnable in different centres.
+How do we deal with batch processing - large jobs? How do we manage resources/quotas (disk/memory/cpu)?  How can we enable users to share their work (both notebooks and data) and create ad-hoc scientific collaborations?
+
+
+A few good principles were mentioned:
+\begin{itemize}
+\item multiple entry points into the system (web, notebooks, cmdline tools, scripting apis)
+\item language agnostic (python flask micro-services architecture, restful interface)
+\item  enable user developed tools
+\item  established standards with hidden complexity for friendly interfaces
+\item  provide access to external data/services vs local ingest
+
+\end{itemize}
 \bibliography{B5}  % For BibTex
 
 \end{document}
