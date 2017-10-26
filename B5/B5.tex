@@ -82,7 +82,7 @@ How users will interact with data in the future is always unclear.  Currently we
 It seems timely to consider how we might offer users a smoother experience as they move between data providers.
 Current VO services allow one to send queries to multiple centres but in the notebook environment one may wish to do something more sophisticated. We should consider whether users can send requests from one centre to another or whether the same notebooks should be runnable in different centres.
 How do we deal with batch processing - large jobs? How do we manage resources/quotas (disk/memory/cpu)?  How can we enable users to share their work (both notebooks and data) and create ad-hoc scientific collaborations?
-We had a few short presentations:
+We had a few short presentations which are all in github\footnote{\url{https://github.com/lsst-dm/adass27-womullan/tree/master/presentations}}:
 \begin{itemize}
 \item LSST Approach (Dubois-Felsmann): science platform will give access to the data and visualization tools and documentation, it will allow collaboration and allow for added value processing close to the data using Jupyter. A question caused clarification that you could write C++ or any other language in that system.
 
@@ -102,25 +102,59 @@ grid and web services working group, working with knowledge discovery group to d
 Goal is fast interoperable computing services close to the data, support Machine Learning.
 \end{itemize}
 
-%\articlefigure{filename}{labelname}{caption}
-
-Q: vision for provisioning resources (disk space, cpu time... scaling into the future)
-A: groups provide their own hardware, example: JHU, you can create groups and decide who has access tot he data and how much is provisioned. Right now they are in the process of building trial functionality, they aren't checking what the actual goal of the computations are, but they don't want to be a generic compute center
-
-\section{Discussion}
-Current VO services allow one to send queries to multiple centres but in the notebook environment one may wish to do something more sophisticated. We should consider whether users can send requests from one centre to another or whether the same notebooks should be runnable in different centres.
-How do we deal with batch processing - large jobs? How do we manage resources/quotas (disk/memory/cpu)?  How can we enable users to share their work (both notebooks and data) and create ad-hoc scientific collaborations?
-
-
-A few good principles were mentioned:
+A few good principles were mentioned by Mike Fitzpatrick:
 \begin{itemize}
 \item multiple entry points into the system (web, notebooks, cmdline tools, scripting apis)
 \item language agnostic (python flask micro-services architecture, restful interface)
 \item  enable user developed tools
 \item  established standards with hidden complexity for friendly interfaces
 \item  provide access to external data/services vs local ingest
-
 \end{itemize}
+
+
+\section{Discussion}
+Current VO services allow one to send queries to multiple centres but in the notebook environment one may wish to do something more sophisticated. We should consider whether users can send requests from one centre to another or whether the same notebooks should be runnable in different centres.
+How do we deal with batch processing - large jobs? How do we manage resources/quotas (disk/memory/cpu)?  How can we enable users to share their work (both notebooks and data) and create ad-hoc scientific collaborations?
+
+A show of hands, who is doing a project like the above with Jupyter lab/hub showed about about 50/50 response of those using/ not using. There were about 70 people in the room ab perhaps 30 did not raise their hand for neither option.
+
+Security was discussed:
+SciServer is by account but anyone can register and there is no check on Users.
+Datalab is actually checking on people who apply for accounts, the APIs authenticate to services, you can still run an anonymous notebook. The advantage of having an anonymous server is for tutorials and EPO projects.
+
+What about  authentication? Many use github authentication...concern is that forcing people to use any one authentication is not a good idea.
+Agreed, will probably provide multiple authentication services, hopefully will get to an automatic way of authentication via API for science user validation. You will still need an "account" the real question is how that is created i.e. using your credentials from an existing academic organization.  Data rights can be complicated as well.
+
+An NCSA research scientist(Nathan Goldbaum), mentioned there's an effort going on there WHOLTALE \footnote{\url{http://wholetale.org/}}  which is a docker stack that allows you to deploy on your own hardware. This uses docker swarm as the backend balancing system. It is used as a platform for data sharing and computing on top of hardware the user controls.
+
+There is a change in paradigm for data centres, providing data is different than providing compute. Do we need to consider proposal for type of compute with i/o and sources, with a committee  decides what you get?
+	 LSST is indeed thinking about these things for the future.
+	 CADC say let's first get users, the community is not enormous, they have rough estimates of their needs and are not furtive, so far these worries haven't been a problem. Resources essentially were not a problem on Skyserver/CasJobs either.
+
+It is important to open doors to reprocess images, going to cloud services gives a new user space to provide resources through other methods. Can the containerization run on multiple infrastructures, with great portability?
+This seems to be where these things are heading!
+
+
+How can we combine and connect all the resources in the future (the dream of the IVOA)?
+How can we communicate between the large centers better?
+That was the point of this BoF.
+Maybe we should look at the channels others outside of the astronomy community have used?
+At least in USA there is the  national data services consortium, all sciences, had discussions there about containerization for mutually beneficial interactions, NDS has one or two meetings a year: \url{http://nationaldataservice.org}
+
+
+The other interesting topic raised was  reusing and bringing old code to the new platforms mentioned by NOAO and ESAC.
+ESAC and NOAO are places with legacy processing software that needs specific machines to run on.
+Porting CASA, complicated with GUIs.
+One way to preserve the software is to make  VM  available and use VNC in the browser to access the GUI (not great but it does work).
+STScI find it  important to educate our users on new and updated software instead of having them continue to run legacy code.
+Also rather than move code to data, provide virtual storage space for use, you just move your data. Okay for small datasets, but helps you not rewrite code just to use the new interface.
+
+
+
+
+\section{Conclusion}
+Continue the conversation on SLACK at \url{https://scienceplatforms.slack.com/} or join the IVOA GWS list could be used as well (\url{mailto:grid@ivoa.net}).
+
 \bibliography{B5}  % For BibTex
 
 \end{document}
