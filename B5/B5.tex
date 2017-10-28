@@ -93,7 +93,10 @@ We had a few short presentations which are all in github\footnote{\url{https://g
 \item ESAC Science Data Centre (Arviset): Science Exploitation and Preservation Platform intends to provide an data computing environment close to the ESAC science archives, enabling scientists to run their code where the data reside, and share their results and code with other people. In addition, the platform will offer an environment to easily run legacy software from ESA space science missions.
 
 
-\item NOAO approach (Fitzpatrick): Datalab provides full sky exploration of catalogs and approximately 1 PB local dataspace, it allows workflows to run close to the data. Provides Jupyter and legacy code execution. Limited user support, but as there are few users this is not of importance at this time.
+
+\item NOAO approach (Fitzpatrick): Data Lab provides full sky exploration of images/catalogs and approximately 1 PB for local user storage (including personal databases), it allows workflows to run close to the data and will soon offer data-publication services. Provides Jupyter notebooks and legacy code execution as containerized applications run in sync/async mode. User support includes docs, example notebooks, web forum and helpdesk contact; few users so these haven't been heavily exercised yet.  Open for new users but still in development.
+
+
 \item STScI DSMO (Momcheva): increase science output from holdings, shorten turn around time, connect multi wavelength, considering a Jupyter hub system deployed on Amazon. Cost would be relatively cheap, and some of that cost may be moved to users.
 
 \item CADC (Fabbro): Raw OpenStack portal with vanilla VMs, some projects using Jupyter, intending to containerize.
@@ -120,10 +123,11 @@ A show of hands, who is doing a project like the above with Jupyter lab/hub show
 
 Security was discussed:
 SciServer is by account but anyone can register and there is no check on Users.
-Datalab is actually checking on people who apply for accounts, the APIs authenticate to services, you can still run an anonymous notebook. The advantage of having an anonymous server is for tutorials and EPO projects.
+Data Lab  is actually checking on people who apply for accounts, the APIs authenticate to services, you can still run an anonymous notebook. The advantage of having an anonymous server is for tutorials and EPO projects.
 
-What about  authentication? Many use github authentication. This is a concern is that forcing people to use any one of multiple authentication services. This is not a good idea.
+What about authentication? Many use github authentication. This is a concern is that forcing people to use any one of multiple authentication services. This is not a good idea.
 Agreed, will probably provide multiple authentication services, hopefully will get to an automatic way of authentication via API for science user validation. You will still need an "account" the real question is how that is created i.e. using your credentials from an existing academic organization.  Data rights can be complicated as well.
+
 
 An NCSA research scientist (Nathan Goldbaum), mentioned there's an effort going on there WHOLETALE \footnote{\url{http://wholetale.org/}}  which is a docker stack that allows you to deploy on your own hardware. This uses docker swarm as the backend balancing system. It is used as a platform for data sharing and computing on top of hardware the user controls.
 
