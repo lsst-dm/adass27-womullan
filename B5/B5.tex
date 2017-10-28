@@ -62,7 +62,7 @@ Brian Major$^8$
 \affil{$^3$IPAC, California Institute of Technology, Pasadena, CA, U.S.A.}
 \affil{$^4$Vega for Gaia/ESAC}
 \affil{$^5$The Johns Hopkins University}
-\affil{$^6$European Space Astronomy Centre}
+\affil{$^6$ESAC Science Data Centre}
 \affil{$^7$NOAO }
 \affil{$^8$CADC }
 }
@@ -71,6 +71,8 @@ Brian Major$^8$
 % This section is for ADS Processing.  There must be one line per author.
 \paperauthor{William~O'Mullane}{womullan@lsst.org}{}{LSST}{}{Tucson}{AZ}{85719}{USA}
 \paperauthor{Gregory~Dubois-Felsmann}{gpdf@ipac.caltech.edu}{}{California Institute of Technology}{IPAC}{Pasadena}{California}{91125}{USA}
+\paperauthor{Christophe~Arviset}{Christophe.Arviset@esa.int}{0000-0002-2311-740X}{European Space Agency}{ESAC Science Data Centre}{Villanueva de la Canada}{Madrid}{28691}{Spain}
+
 
 \begin{abstract}
 How users will interact with data in the future is always unclear.  Currently we see Jupyter Notebooks or JupyterLab emerging in many places as the way forward for one aspect of this.  This BoF explored some topics around providing and environment for doing science.
@@ -88,8 +90,8 @@ We had a few short presentations which are all in github\footnote{\url{https://g
 
 \item SciServer Approach (Lemson): SciServer is format agnostic storage with extensible tools (query and analysis), it allows hosting and sharing datasets. Near data access is provided with Jupyter. Notebooks can be executed in batch mode but no MPI.
 
-\item European Space Science Data Centre (Arviset): Science Exploitation and Preservation Platform at ESAC
-intends to enable data processing where the data resides (Jupyter). Also supports legacy software.
+\item ESAC Science Data Centre (Arviset): Science Exploitation and Preservation Platform intends to provide an data computing environment close to the ESAC science archives, enabling scientists to run their code where the data reside, and share their results and code with other people. In addition, the platform will offer an environment to easily run legacy software from ESA space science missions.
+
 
 \item NOAO approach (Fitzpatrick): Datalab provides full sky exploration of catalogs and approximately 1 PB local dataspace, it allows workflows to run close to the data. Provides Jupyter and legacy code execution. Limited user support, but as there are few users this is not of importance at this time.
 \item STScI DSMO (Momcheva): increase science output from holdings, shorten turn around time, connect multi wavelength, considering a Jupyter hub system deployed on Amazon. Cost would be relatively cheap, and some of that cost may be moved to users.
