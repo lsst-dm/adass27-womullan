@@ -86,9 +86,10 @@ Current VO services allow one to send queries to multiple centres but in the not
 How do we deal with batch processing - large jobs? How do we manage resources/quotas (disk/memory/cpu)?  How can we enable users to share their work (both notebooks and data) and create ad-hoc scientific collaborations?
 We had a few short presentations which are all in github\footnote{\url{https://github.com/lsst-dm/adass27-womullan/tree/master/presentations}}:
 \begin{itemize}
-\item LSST Approach (Dubois-Felsmann): science platform will give access to the data and visualization tools and documentation, it will allow collaboration and allow for added value processing close to the data using Jupyter. In principle you could write C++ or any other language in that system.
+\item LSST Approach (Dubois-Felsmann): LSST\citep{2008arXiv0805.2366I} Science Platform\citep{LSE-319} will give access to the data and visualization tools and documentation, we see three aspects to this, the traditional Portal, the Web Services APIs and the Jupyter/Notebook.
+It will allow collaboration and allow for added value processing close to the data using Jupyter. In principle you could write C++ or any other language in that system, it will come with the DM stack pre loaded.
 
-\item SciServer Approach (Lemson): SciServer is format agnostic storage with extensible tools (query and analysis), it allows hosting and sharing datasets. Near data access is provided with Jupyter. Notebooks can be executed in batch mode but no MPI.
+\item SciServer Approach (Lemson): SciServer is format agnostic storage with extensible tools (query and analysis), it allows hosting and sharing datasets. Near data access is provided with Jupyter. Notebooks can be executed in batch mode but no MPI type processing is available at the moment.
 
 \item ESAC Science Data Centre (Arviset): Science Exploitation and Preservation Platform intends to provide an data computing environment close to the ESAC science archives, enabling scientists to run their code where the data reside, and share their results and code with other people. In addition, the platform will offer an environment to easily run legacy software from ESA space science missions.
 
@@ -122,18 +123,21 @@ How do we deal with batch processing - large jobs? How do we manage resources/qu
 A show of hands, who is doing a project like the above with Jupyter lab/hub showed roughly 50-50 response of those using JupyterLab as opposed to not using. There were about 70 people in the room and perhaps 30 did not raise their hand for either option.
 
 Security was discussed:
-SciServer is by account but anyone can register and there is no check on Users.
+SciServer access is by account only but anyone can self register and there is no check on registrations.
 Data Lab  is actually checking on people who apply for accounts, the APIs authenticate to services, you can still run an anonymous notebook. The advantage of having an anonymous server is for tutorials and EPO projects.
 
-What about authentication? Many use github authentication. This is a concern is that forcing people to use any one of multiple authentication services. This is not a good idea.
-Agreed, will probably provide multiple authentication services, hopefully will get to an automatic way of authentication via API for science user validation. You will still need an "account" the real question is how that is created i.e. using your credentials from an existing academic organization.  Data rights can be complicated as well.
+What about authentication? Many use github authentication. This is a concern, we do not wish to  force people to use any one of multiple authentication services. All agreed that this is not a good idea.
+We will probably have to provide multiple authentication services, hopefully will get to an automatic way of authentication via API for science user validation.
+You will still need an "account" the real question is how that is created e.g. that could be done using your credentials from an existing academic organization.
+Data rights can be complicated as well - we did not delve in to that topic too far in this forum.
 
 
 An NCSA research scientist (Nathan Goldbaum), mentioned there's an effort going on there WHOLETALE \footnote{\url{http://wholetale.org/}}  which is a docker stack that allows you to deploy on your own hardware. This uses docker swarm as the backend balancing system. It is used as a platform for data sharing and computing on top of hardware the user controls.
 
-There is a change in paradigm for data centres, providing data is different than providing processing time. Do we need to consider proposal for type of compute with i/o and sources, with a committee  decides what you get?
-	 LSST is indeed thinking about these things for the future.
-	 CADC say let's first get users, the community is not enormous, they have rough estimates of their needs and are not furtive, so far these worries haven't been a problem. Resources essentially were not a problem on Skyserver/CasJobs either.
+There is a change in paradigm for data centres, providing data is different than providing processing time.
+Do we need to consider proposals for  a type of compute with i/o and sources, where  a committee then decides which proposals merit system time ?
+	 LSST is indeed thinking about these things for the future but wishes to see how things evolve first.
+	 CADC say let's first get users, the community is not enormous, they have rough estimates of their needs and are not furtive, so far these worries haven't been a problem. Resources essentially were not a problem on Skyserver/CasJobs either though they provided limited near data processing only.
 
 It is important to open doors to reprocess images, going to cloud services gives a new user space to provide resources through other methods. Can the containerization run on multiple infrastructures, with great portability?
 This seems to be where these things are heading!
@@ -148,7 +152,7 @@ At least in USA there is the  national data services consortium, all sciences, h
 
 The other interesting topic raised was  reusing and bringing old code to the new platforms mentioned by NOAO and ESAC.
 ESAC and NOAO are places with legacy processing software that needs specific machines to run on.
-Porting CASA, complicated with GUIs.
+Porting CASA was complicated with GUIs, GUIs are in general problematic.
 One way to preserve the software is to make a VM available and use VNC in the browser to access the GUI (not great but it does work).
 STScI find it  important to educate our users on new and updated software instead of having them continue to run legacy code.
 Also rather than move code to data, provide virtual storage space for use, you just move your data. Okay for small datasets, but helps you avoid rewriting code just to use the new interface.
@@ -158,7 +162,14 @@ Also rather than move code to data, provide virtual storage space for use, you j
 
 \section{Conclusion}
 Continue the conversation on SLACK at \url{https://scienceplatforms.slack.com/} or join the IVOA GWS list (\url{mailto:grid@ivoa.net}).
-
+\newline
+{\bf Acknowledgments:} Some of this
+material is based upon work supported in part by the National Science Foundation
+through Cooperative Agreement 1258333 managed by the Association of Universities
+for Research in Astronomy (AURA), and the Department of Energy under Contract No.
+DE-AC02-76SF00515 with the SLAC National Accelerator Laboratory. Additional
+LSST funding comes from private donations, grants to universities, and in-kind support
+from LSSTC Institutional Members.
 \bibliography{B5}  % For BibTex
 
 \end{document}
