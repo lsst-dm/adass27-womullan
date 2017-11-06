@@ -89,8 +89,8 @@ How users will interact with data in the future is always unclear.  Currently we
 \section{Introduction}
 
 It seems timely to consider how we might offer users a smoother experience as they move between data providers.
-Current VO services allow one to send queries to multiple centres but in the notebook environment one may wish to do something more sophisticated. We should consider whether users can send requests from one centre to another or whether the same notebooks should be runnable in different centres.
-How do we deal with batch processing -- large jobs? How do we manage resources/quotas (disk/memory/cpu)?  How can we enable users to share their work (both notebooks and data) and create ad-hoc scientific collaborations?
+Current VO services allow one to send queries to multiple centres but in the notebook environment one may wish to do something more sophisticated.
+Indeed many of us are working on some advancement beyond the current portal/query model.
 We had a few short presentations which are all on GitHub\footnote{\url{https://github.com/lsst-dm/adass27-womullan/tree/master/presentations}}:
 
 \paragraph*{LSST Approach (Dubois-Felsmann)} LSST \citep{2008arXiv0805.2366I} Science Platform \citep{LSE-319} will give access to the data and visualization tools and documentation, we see three aspects to this, the traditional Portal, the Web Services APIs and the Jupyter/Notebook.
@@ -121,6 +121,23 @@ A few good principles were mentioned by Mike Fitzpatrick:
 \item  enable user developed tools;
 \item  established standards with hidden complexity for friendly interfaces;
 \item  provide access to external data/services vs local ingest.
+\end{itemize}
+
+
+A few key questions were presented to seed the discussion :
+\begin{itemize}
+\item How many of us are using Jupyter (Lab/Hub/Notebooks) .. how long will it last?
+        \begin{itemize}
+        \item How do we share notebooks ?
+        \item How can we make them (more) portable?
+        \end{itemize}
+\item How do we handle batch processing?
+        \begin{itemize}
+        \item Is Universal worker service sufficient ?
+        \item Quotas is this the new regime ?
+        \item How to handle single sign on and authorization/authentication ?
+        \end{itemize}
+
 \end{itemize}
 
 
